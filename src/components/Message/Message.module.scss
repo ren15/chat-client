@@ -1,0 +1,27 @@
+.message {
+  max-width: 300px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  &__info {
+    font-size: 14px;
+    color: #ee0000;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  &__text {
+    background-color: #00aabb;
+    border: 1px solid #00aabb;
+    border-radius: 8px;
+    padding: 12px;
+    display: inline-block;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: -20px; /* Положение треугольника */
+      border: 10px solid transparent; /* Прозрачные границы */
+      border-bottom: 10px solid #00aabb; /* Добавляем треугольник */
+    }
+  }
+}
