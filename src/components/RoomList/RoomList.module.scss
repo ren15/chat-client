@@ -1,0 +1,30 @@
+.roomList {
+  flex: 0 0 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__input {
+    border: 2px solid #00aabb;
+    border-radius: 30px;
+    padding: 10px 20px;
+    margin: 10px;
+  }
+  &__user {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-size: 26px;
+    font-weight: 900;
+    color: #00aabb;
+    border-bottom: 1px solid #00aabb;
+  }
+  &__logout {
+    background: url(./Room/logout.svg);
+    color: #00aabb;
+    width: 30px;
+    height: 30px;
+  }
+}

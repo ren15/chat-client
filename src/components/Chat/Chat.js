@@ -11,14 +11,17 @@ function Chat() {
   }
 
   const sendMessage = (event) => {
-    const now = new Date().toLocaleTimeString().slice(0, -3) // 11:02
+    if (text) {
+      const now = new Date().toLocaleTimeString().slice(0, -3) // 11:02
 
-    const chatElement = {
-      user: 'Я',
-      text: event.target.value,
-      date: now
+      const chatElement = {
+        user: 'Я',
+        text: event.target.value,
+        date: now
+      }
+      setChatList([...chatList, chatElement])
+      setText('')
     }
-    setChatList([...chatList, chatElement])
   }
 
   return (
@@ -45,13 +48,12 @@ function Chat() {
         <textarea
           className={classes.chat__text}
           placeholder='Введите сообщение'
-          onChange={changeText}></textarea>
+          onChange={changeText}
+          value={text}></textarea>
         <button
-          className={classes.chat__button}
+          className={classes.chat__send}
           onClick={sendMessage}
-          value={text}>
-          Отправить
-        </button>
+          value={text}></button>
       </div>
     </div>
   )

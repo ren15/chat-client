@@ -1,22 +1,19 @@
 .chat {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 30px;
   margin: 0 auto;
-  border: 5px solid #aaaaaa;
-  border-radius: 20px;
+  flex: 0 0 70%;
+
   &__header {
-    flex: 0 0 10%;
+    flex: 0 0 50px;
     background-color: #00aabb;
-    border: 5px solid #aaaacc;
   }
   &__board {
-    flex: 0 0 80%;
+    flex: 0 0 82%;
     overflow: hidden;
     background-color: #ffffff;
-    border: 5px solid #aaaacc;
+    border: 1px solid #00aabb;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -28,19 +25,21 @@
     position: relative;
   }
   &__text {
-    width: 100%;
-    border: 5px solid #aaaacc;
-    background-color: red;
+    border: 1px solid #00aabb;
     padding: 20px 100px 20px 50px;
     font-size: 18px;
     font-weight: 500;
     overflow: hidden;
     resize: none;
   }
-  &__button {
+  &__send {
     position: absolute;
     right: 20px;
     top: 35px;
     z-index: 2;
+    background: url(./paper-plane.svg);
+    color: #00aabb;
+    width: 30px;
+    height: 30px;
   }
 }
