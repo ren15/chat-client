@@ -4,7 +4,6 @@
   position: relative;
   width: 100%;
   border-bottom: 2px solid #00aabb;
-
   transition: background 0.3s ease-in;
 
   &__name {
@@ -36,5 +35,5 @@
 }
 
 .selected {
-  opacity: 0.5;
+  background-color: #00aabb;
 }

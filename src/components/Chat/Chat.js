@@ -1,25 +1,29 @@
 import React from 'react'
 import classes from './Chat.module.scss'
-import MyBoard from './MyBoard/MyBoard'
+import Board from './Board/Board'
 
-function Chat() {
+function Chat(props) {
   const [user, setUser] = React.useState({id: '135', name: 'Ильгам'})
-
   const [text, setText] = React.useState('')
-  const [chatList, setChatList] = React.useState([
-    {
-      id: 123,
-      user: 'Иван',
-      text: 'Как дела?',
-      date: '12.04'
-    },
-    {
-      id: 125,
-      user: 'Петр',
-      text: 'Нормально, сам?',
-      date: '12.32'
-    }
-  ])
+  const [chatList, setChatList] = React.useState({
+    chatId: '123',
+    name: 'Комната №1',
+    selected: true,
+    messages: [
+      {
+        id: 123,
+        user: 'Иван',
+        text: 'Как дела?',
+        date: '12.04'
+      },
+      {
+        id: 125,
+        user: 'Петр',
+        text: 'Нормально, сам?',
+        date: '12.32'
+      }
+    ]
+  })
 
   const changeText = (event) => {
     setText(event.target.value)
@@ -35,7 +39,11 @@ function Chat() {
         text: event.target.value,
         date: now
       }
-      setChatList([...chatList, chatElement])
+      const newMessages = chatList.messages
+      newMessages.push(chatElement)
+      const newChatList = chatList
+      newChatList.messages = newMessages
+      setChatList(newChatList)
       setText('')
     }
   }
@@ -44,10 +52,10 @@ function Chat() {
     <div className={classes.chat}>
       <div className={classes.chat__header}>
         <div className={classes.chat__roomName}>
-          <p>Комната</p>
+          <p>{props.room.name || null}</p>
         </div>
       </div>
-      <MyBoard user={user} chatList={chatList} />
+      <Board user={user} chatList={chatList.messages} />
 
       <div className={classes.chat__sendMessage}>
         <textarea
