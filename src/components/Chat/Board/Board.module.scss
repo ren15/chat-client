@@ -1,13 +1,13 @@
 .board {
-  flex: 0 1 100%;
+  flex: 1 1 100%;
   border-left: 2px solid #00aabb;
   border-bottom: 2px solid #00aabb;
-  overflow-y: scroll;
+  overflow-y: auto;
   background-color: #ffffff;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  //justify-content: flex-end;
 
   &__myMessage {
     display: flex;

@@ -1,11 +1,18 @@
 import React from 'react'
-import classes from './MyBoard.module.scss'
-import Message from '../../Message/Message'
-import OtherMessage from '../../OtherMessage/OtherMessage'
+import classes from './Board.module.scss'
+import Message from './Message/Message'
+import OtherMessage from './OtherMessage/OtherMessage'
 
-function MyBoard(props) {
+function Board(props) {
+  const refBoard = React.useRef(null)
+  React.useEffect(() => {
+    return () => {
+      //refBoard.current.scrollTop = refBoard.current.scrollHeight
+    }
+  }, [props.chatList])
+
   return (
-    <div className={classes.board}>
+    <div ref={refBoard} className={classes.board}>
       {props.chatList.map(
         (el, index) =>
           (props.user.id === el.id ? (
@@ -28,4 +35,4 @@ function MyBoard(props) {
   )
 }
 
-export default MyBoard
+export default Board
