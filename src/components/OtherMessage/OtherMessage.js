@@ -1,7 +1,7 @@
 import React from 'react'
-import classes from './Message.module.scss'
+import classes from './OtherMessage.module.scss'
 
-function Message(props) {
+function OtherMessage(props) {
   return (
     <div className={classes.message}>
       <div className={classes.message__line}>
@@ -14,4 +14,4 @@ function Message(props) {
   )
 }
 
-export default Message
+export default OtherMessage

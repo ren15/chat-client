@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: flex-start;
   &__line {
     max-width: 300px;
-    margin-right: 5px;
+    margin-left: 5px;
     margin-bottom: 5px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
   }
   &__info {
     font-size: 14px;
@@ -19,8 +19,8 @@
     text-align: right;
   }
   &__text {
-    background-color: #00aabb;
-    border: 1px solid #00aabb;
+    background-color: #a7a4a4;
+    border: 1px solid #a7a4a4;
     border-radius: 5px;
     padding: 12px;
     display: inline-block;
@@ -29,10 +29,10 @@
     &::before {
       content: '';
       position: absolute;
-      right: 5px;
+      left: 5px;
       top: -20px;
       border: 10px solid transparent;
-      border-bottom: 10px solid #00aabb;
+      border-bottom: 10px solid #a7a4a4;
     }
   }
 }

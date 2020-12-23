@@ -1,0 +1,25 @@
+.board {
+  flex: 0 1 100%;
+  border-left: 2px solid #00aabb;
+  border-bottom: 2px solid #00aabb;
+  overflow-y: scroll;
+  background-color: #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  &__myMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  &__otherMessage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+}
