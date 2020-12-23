@@ -1,0 +1,35 @@
+.MainMenu {
+  flex: 0 0 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &__input {
+    border: 2px solid #00aabb;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+  }
+  &__user {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-size: 30px;
+    font-weight: 900;
+    color: #00aabb;
+    border-bottom: 2px solid #00aabb;
+  }
+  &__logout {
+    background: url(./Room/logout.svg);
+    color: #00aabb;
+    width: 30px;
+    height: 30px;
+  }
+  &__notChats {
+    text-align: center;
+  }
+}

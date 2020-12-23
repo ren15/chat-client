@@ -1,46 +1,47 @@
 .chat {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 30px;
   margin: 0 auto;
-  border: 5px solid #aaaaaa;
-  border-radius: 20px;
+  flex: 0 0 70%;
+
   &__header {
-    flex: 0 0 10%;
-    background-color: #00aabb;
-    border: 5px solid #aaaacc;
-  }
-  &__board {
-    flex: 0 0 80%;
-    overflow: hidden;
-    background-color: #ffffff;
-    border: 5px solid #aaaacc;
-    position: relative;
+    border-left: 2px solid #00aabb;
+    border-bottom: 2px solid #00aabb;
+    flex: 0 0 60px;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
+  }
+  &__roomName {
+    font-size: 26px;
+    font-weight: 900;
+    color: #00aabb;
+    padding-left: 20px;
+  }
+
+  &__sendMessage {
+    flex: 0 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   &__input {
-    flex: 0 0 10%;
-    position: relative;
-  }
-  &__text {
-    width: 100%;
-    border: 5px solid #aaaacc;
-    background-color: red;
-    padding: 20px 100px 20px 50px;
+    flex: 0 0 93%;
     font-size: 18px;
     font-weight: 500;
     overflow: hidden;
     resize: none;
+    border: 2px solid #00aabb;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0;
   }
-  &__button {
-    position: absolute;
-    right: 20px;
-    top: 35px;
-    z-index: 2;
+  &__send {
+    flex: 0 0 7%;
+    background: url(./paper-plane.svg) center no-repeat;
+    color: #00aabb;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
   }
 }
