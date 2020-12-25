@@ -1,0 +1,19 @@
+.container {
+  background-color: rgba($color: #000000, $alpha: 0.5);
+}
+.PopupLayout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  border: 2px solid #00aabb;
+  border-radius: 10px;
+  background-color: rgba($color: #00aabb, $alpha: 0.1);
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}

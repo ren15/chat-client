@@ -4,6 +4,9 @@ import Chat from './components/Chat/Chat'
 import './null.css'
 import classes from './App.module.scss'
 import MainMenu from './components/MainMenu/MainMenu'
+import Auth from './components/Auth/Auth'
+import CreateChat from './components/MainMenu/CreateChat/CreateChat'
+import PopupLayout from './hoc/PopupLayout/PopupLayout'
 
 const socket = io('http://localhost:5000/')
 
@@ -52,18 +55,23 @@ function App() {
   }
 
   return (
-    <div className={classes.App}>
-      <MainMenu
-        roomList={roomList}
-        selectedRoom={selectedRoom}
-        createChat={createChat}
-      />
-      <Chat
-        room={room}
-        emitSendMessage={emitSendMessage}
-        selectedRoom={selectedRoom}
-      />
-    </div>
+    <>
+      <div className={classes.App}>
+        <MainMenu
+          roomList={roomList}
+          selectedRoom={selectedRoom}
+          createChat={createChat}
+        />
+        <Chat
+          room={room}
+          emitSendMessage={emitSendMessage}
+          selectedRoom={selectedRoom}
+        />
+        {/* <PopupLayout>
+        <Auth />
+      </PopupLayout> */}
+      </div>
+    </>
   )
 }
 

@@ -1,11 +1,13 @@
 import React from 'react'
+import PopupLayout from '../../hoc/PopupLayout/PopupLayout'
 import Loader from '../Loader/Loader'
 import RoomList from '../MainMenu/RoomList/RoomList'
 import classes from './MainMenu.module.scss'
+import CreateChat from './CreateChat/CreateChat'
 
 function MainMenu(props) {
-  const [newChat, setNewChat] = React.useState('')
   const [searchChat, setSearchChat] = React.useState('')
+  const [formCreateChat, setFormCreateChat] = React.useState(false)
 
   const user = {
     id: '1',
@@ -28,16 +30,18 @@ function MainMenu(props) {
         onChange={changeSearchChat}
       />
       <div className={classes.newChat}>
-        <button className={classes.newChat__create}>Создать чат</button>
-        <div className={classes.newChat__chatName}>
-          <input
-            className={classes.newChat__input}
-            onChange={(event) => setNewChat(event.target.value)}
-          />
-          <button
-            className={classes.newChat__submit}
-            onClick={() => props.createChat(newChat)}></button>
-        </div>
+        <button
+          className={classes.newChat__create}
+          onClick={() => {
+            setFormCreateChat(!formCreateChat)
+          }}>
+          Создать чат
+        </button>{' '}
+        {formCreateChat ? (
+          <PopupLayout>
+            <CreateChat createChat={props.createChat} />
+          </PopupLayout>
+        ) : null}
       </div>
       {props.roomList.length ? (
         <RoomList

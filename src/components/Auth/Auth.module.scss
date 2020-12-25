@@ -1,0 +1,46 @@
+.Auth {
+  &__title {
+    font-size: 40px;
+    font-weight: 900;
+    background-color: #00aabb;
+    border: 2px solid #00aabb;
+    border-radius: 5px;
+    color: #ffffff;
+    padding-bottom: 10px;
+    width: 100%;
+    & h1 {
+      text-align: center;
+    }
+  }
+  &__form {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    & input {
+      border: 2px solid #00aabb;
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      &:focus {
+        box-shadow: 0 0 10px rgba(#00aabb, 0.7);
+      }
+    }
+  }
+  &__buttons {
+    & button {
+      border: 2px solid #00aabb;
+      background-color: #00aabb;
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin: 10px;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 500;
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(#00aabb, 0.7);
+      }
+    }
+  }
+}
