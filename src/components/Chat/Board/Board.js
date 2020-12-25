@@ -15,7 +15,7 @@ function Board(props) {
     <div ref={refBoard} className={classes.board}>
       {props.chatList.map(
         (el, index) =>
-          (props.user.id === el.id ? (
+          (props.user.id === el.userId ? (
             <Message
               key={index}
               textMessage={el.text}

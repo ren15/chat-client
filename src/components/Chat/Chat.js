@@ -5,46 +5,17 @@ import Board from './Board/Board'
 function Chat(props) {
   const [user, setUser] = React.useState({id: '135', name: 'Ильгам'})
   const [text, setText] = React.useState('')
-  const [chatList, setChatList] = React.useState({
-    chatId: '123',
-    name: 'Комната №1',
-    selected: true,
-    messages: [
-      {
-        id: 123,
-        user: 'Иван',
-        text: 'Как дела?',
-        date: '12.04'
-      },
-      {
-        id: 125,
-        user: 'Петр',
-        text: 'Нормально, сам?',
-        date: '12.32'
-      }
-    ]
-  })
 
   const changeText = (event) => {
     setText(event.target.value)
   }
 
-  const sendMessage = (event) => {
+  const sendMessage = () => {
     if (text) {
-      const now = new Date().toLocaleTimeString().slice(0, -3) // 11:02
-
-      const chatElement = {
-        user: user.name,
-        id: user.id,
-        text: event.target.value,
-        date: now
-      }
-      const newMessages = chatList.messages
-      newMessages.push(chatElement)
-      const newChatList = chatList
-      newChatList.messages = newMessages
-      setChatList(newChatList)
+      const now = new Date()
+      props.emitSendMessage(text, now)
       setText('')
+      props.selectedRoom(props.room)
     }
   }
 
@@ -55,7 +26,7 @@ function Chat(props) {
           <p>{props.room.name || null}</p>
         </div>
       </div>
-      <Board user={user} chatList={chatList.messages} />
+      <Board user={user} chatList={props.room.messages || []} />
 
       <div className={classes.chat__sendMessage}>
         <textarea

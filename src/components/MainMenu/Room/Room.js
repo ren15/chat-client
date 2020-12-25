@@ -11,10 +11,10 @@ function Room(props) {
       <span className={classes.room__back}></span>
       <span className={classes.room__name}>{props.room.name}</span>
       <span className={classes.room__lastMessage}>
-        {props.room.lastMessage}
+        {props.room.lastMessage || 'Нет сообщений'}
       </span>
       <span className={classes.room__usersCount}>
-        {props.room.usersCount} - участников
+        {props.room.users.length} - участников
       </span>
     </li>
   )
