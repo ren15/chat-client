@@ -6,6 +6,15 @@
   padding: 10px;
   color: #00aabb;
 
+  &__exit {
+    background: url('../../../icons/exit.ico') center no-repeat;
+    position: absolute;
+    background-size: cover;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+  }
   &__title {
     font-size: 30px;
     font-weight: 900;

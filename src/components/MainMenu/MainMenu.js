@@ -8,10 +8,8 @@ import CreateChat from './CreateChat/CreateChat'
 function MainMenu(props) {
   const [searchChat, setSearchChat] = React.useState('')
   const [formCreateChat, setFormCreateChat] = React.useState(false)
-
-  const user = {
-    id: '1',
-    name: 'Ilham'
+  const hideWindowCreateChat = () => {
+    setFormCreateChat(false)
   }
 
   const changeSearchChat = (event) => {
@@ -21,8 +19,10 @@ function MainMenu(props) {
   return (
     <div className={classes.MainMenu}>
       <div className={classes.MainMenu__user}>
-        <p className={classes.MainMenu__name}>{user.name}</p>
-        <button className={classes.MainMenu__logout}></button>
+        <p className={classes.MainMenu__name}>{props.user.name}</p>
+        <button
+          className={classes.MainMenu__logout}
+          onClick={() => props.logout()}></button>
       </div>
       <input
         className={classes.MainMenu__input}
@@ -33,13 +33,16 @@ function MainMenu(props) {
         <button
           className={classes.newChat__create}
           onClick={() => {
-            setFormCreateChat(!formCreateChat)
+            setFormCreateChat(true)
           }}>
           Создать чат
         </button>{' '}
         {formCreateChat ? (
           <PopupLayout>
-            <CreateChat createChat={props.createChat} />
+            <CreateChat
+              createChat={props.createChat}
+              hideWindowCreateChat={hideWindowCreateChat}
+            />
           </PopupLayout>
         ) : null}
       </div>

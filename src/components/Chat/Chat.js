@@ -3,7 +3,6 @@ import classes from './Chat.module.scss'
 import Board from './Board/Board'
 
 function Chat(props) {
-  const [user, setUser] = React.useState({id: '135', name: 'Ильгам'})
   const [text, setText] = React.useState('')
 
   const changeText = (event) => {
@@ -13,9 +12,16 @@ function Chat(props) {
   const sendMessage = () => {
     if (text) {
       const now = new Date()
-      props.emitSendMessage(text, now)
+      props.emitSendMessage(text, props.user.id, props.user.name, now)
       setText('')
       props.selectedRoom(props.room)
+    }
+  }
+
+  const sendMessageKeyEnter = (event) => {
+    if (event.key === 'Enter') {
+      sendMessage()
+      event.preventDefault()
     }
   }
 
@@ -26,7 +32,7 @@ function Chat(props) {
           <p>{props.room.name || null}</p>
         </div>
       </div>
-      <Board user={user} chatList={props.room.messages || []} />
+      <Board user={props.user} chatList={props.room.messages || []} />
 
       <div className={classes.chat__sendMessage}>
         <textarea
@@ -34,6 +40,7 @@ function Chat(props) {
           placeholder='Введите сообщение'
           rows='1'
           onChange={changeText}
+          onKeyPress={sendMessageKeyEnter}
           value={text}></textarea>
         <button
           className={classes.chat__send}
