@@ -4,6 +4,11 @@ import Message from './Message/Message'
 import OtherMessage from './OtherMessage/OtherMessage'
 
 function Board(props) {
+  React.useEffect(() => {
+    console.log(props.chatList)
+    // props.selectedRoom(props.room)
+  }, [props.chatList])
+
   return (
     <div className={classes.board}>
       {props.chatList.map(

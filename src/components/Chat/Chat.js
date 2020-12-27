@@ -5,6 +5,10 @@ import Board from './Board/Board'
 function Chat(props) {
   const [text, setText] = React.useState('')
 
+  React.useEffect(() => {
+    //props.selectedRoom(props.room)
+  }, [])
+
   const changeText = (event) => {
     setText(event.target.value)
   }
@@ -32,7 +36,13 @@ function Chat(props) {
           <p>{props.room.name || null}</p>
         </div>
       </div>
-      <Board user={props.user} chatList={props.room.messages || []} />
+      {props.room ? (
+        <Board
+          user={props.user}
+          selectedRoom={props.selectedRoom}
+          chatList={props.room.messages || []}
+        />
+      ) : null}
 
       <div className={classes.chat__sendMessage}>
         <textarea

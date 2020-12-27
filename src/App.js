@@ -14,24 +14,25 @@ function App() {
   const [room, setRoom] = React.useState([{messages: []}])
   const [user, setUser] = React.useState(null)
 
-  socket.on('getUser', (user) => {
-    setUser(user)
-  })
-
-  socket.on('getChatList', async (chatList) => {
-    await setRoomList(chatList)
-  })
-  socket.on('getMessagesInChat', async (messages) => {
-    try {
-      await setRoom(messages)
-    } catch (err) {
-      console.warn(err)
-    }
-  })
-  socket.on('sendMessagesInChat', (messages) => {
-    setRoom(messages)
-  })
   React.useEffect(() => {
+    socket.on('getUser', (user) => {
+      setUser(user)
+    })
+
+    socket.on('getChatList', async (chatList) => {
+      await setRoomList(chatList)
+    })
+    socket.on('getMessagesInChat', async (messages) => {
+      try {
+        await setRoom(messages)
+      } catch (err) {
+        console.warn(err)
+      }
+    })
+    socket.on('sendMessagesInChat', (messages) => {
+      console.log('on', messages)
+      setRoom(messages)
+    })
     socket.emit('queryGetChatList')
   }, [])
 
