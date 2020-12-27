@@ -14,7 +14,7 @@ function Chat(props) {
   }
 
   const sendMessage = () => {
-    if (text) {
+    if (text && props.room) {
       const now = new Date()
       props.emitSendMessage(text, props.user.id, props.user.name, now)
       setText('')
@@ -23,7 +23,7 @@ function Chat(props) {
   }
 
   const sendMessageKeyEnter = (event) => {
-    if (event.key === 'Enter') {
+    if (text && event.key === 'Enter' && props.room) {
       sendMessage()
       event.preventDefault()
     }

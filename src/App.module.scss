@@ -4,4 +4,13 @@
   height: 100vh;
   margin: 0 auto;
   display: flex;
+
+  &__MainMenu {
+    flex: 0 1 25%;
+    height: 100vh;
+  }
+  &__Chat {
+    flex: 0 1 75%;
+    display: flex;
+  }
 }

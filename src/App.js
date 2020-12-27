@@ -17,6 +17,9 @@ function App() {
   React.useEffect(() => {
     socket.on('getUser', (user) => {
       setUser(user)
+      if (user) {
+        localStorage.setItem('userId', user.id)
+      }
     })
 
     socket.on('getChatList', async (chatList) => {
@@ -34,6 +37,10 @@ function App() {
       setRoom(messages)
     })
     socket.emit('queryGetChatList')
+
+    if (localStorage.getItem('userId')) {
+      socket.emit('queryGetUserById', localStorage.getItem('userId'))
+    }
   }, [])
 
   const logout = () => {
@@ -79,19 +86,23 @@ function App() {
     <>
       {user ? (
         <div className={classes.App}>
-          <MainMenu
-            user={user}
-            roomList={roomList}
-            selectedRoom={selectedRoom}
-            createChat={createChat}
-            logout={logout}
-          />
-          <Chat
-            user={user}
-            room={room}
-            emitSendMessage={emitSendMessage}
-            selectedRoom={selectedRoom}
-          />
+          <div className={classes.App__MainMenu}>
+            <MainMenu
+              user={user}
+              roomList={roomList}
+              selectedRoom={selectedRoom}
+              createChat={createChat}
+              logout={logout}
+            />
+          </div>
+          <div className={classes.App__Chat}>
+            <Chat
+              user={user}
+              room={room}
+              emitSendMessage={emitSendMessage}
+              selectedRoom={selectedRoom}
+            />
+          </div>
         </div>
       ) : (
         <PopupLayout>

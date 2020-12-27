@@ -5,7 +5,6 @@ import OtherMessage from './OtherMessage/OtherMessage'
 
 function Board(props) {
   React.useEffect(() => {
-    console.log(props.chatList)
     // props.selectedRoom(props.room)
   }, [props.chatList])
 

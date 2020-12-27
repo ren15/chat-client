@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
-  flex: 0 0 70%;
+  flex: 0 0 100%;
 
   &__header {
     border-left: 2px solid #00aabb;
@@ -22,11 +22,10 @@
   &__sendMessage {
     flex: 0 0 30px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
   }
   &__input {
-    flex: 0 0 93%;
+    flex: 0 0 90%;
     font-size: 18px;
     font-weight: 500;
     overflow: hidden;
@@ -40,11 +39,11 @@
     }
   }
   &__send {
-    flex: 0 0 7%;
+    flex: 0 0 10%;
     background: url(./paper-plane.svg) center no-repeat;
     color: #00aabb;
     width: 30px;
     height: 30px;
-    margin-right: 20px;
+    padding-left: 20px;
   }
 }
