@@ -4,6 +4,9 @@
   justify-content: space-between;
   margin: 0 auto;
   flex: 0 0 100%;
+  @media (max-width: 500px) {
+    display: none;
+  }
 
   &__header {
     border-left: 2px solid #00aabb;
@@ -12,7 +15,7 @@
     display: flex;
     align-items: center;
   }
-  &__roomName {
+  &__chatName {
     font-size: 26px;
     font-weight: 900;
     color: #00aabb;
