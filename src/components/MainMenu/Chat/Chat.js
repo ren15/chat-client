@@ -3,7 +3,9 @@ import classes from './Chat.module.scss'
 
 function Chat(props) {
   const cls = [classes.chat]
-  if (props.selectChat._id === props.chat._id) cls.push(classes.selected)
+  if (props.selectChat) {
+    if (props.selectChat._id === props.chat._id) cls.push(classes.selected)
+  }
 
   return (
     <li

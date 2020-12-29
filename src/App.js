@@ -1,6 +1,6 @@
 import React from 'react'
 import {io} from 'socket.io-client'
-import Chat from './components/ChatMessage/ChatMessage'
+import ChatMessage from './components/ChatMessage/ChatMessage'
 import './null.css'
 import classes from './App.module.scss'
 import MainMenu from './components/MainMenu/MainMenu'
@@ -17,7 +17,7 @@ function App() {
   React.useEffect(() => {
     // Создание обработчиков событий
     socket.on('getUser', async (user) => {
-      await setUser(user)
+      await setUser(() => user)
       if (user) {
         localStorage.setItem('userId', user.id)
       }
@@ -25,21 +25,22 @@ function App() {
 
     socket.on('getChatList', async (chatList) => {
       try {
-        await setchatList(chatList)
+        await setchatList(() => chatList)
       } catch (err) {
         console.warn(err)
       }
     })
     socket.on('getMessagesInChat', async (messages) => {
       try {
-        await setchat(messages)
+        console.log(messages)
+        await setchat(() => messages)
       } catch (err) {
         console.warn(err)
       }
     })
-    socket.on('sendMessagesInChat', async (messages) => {
-      await setchat(messages)
-    })
+    // socket.on('sendMessagesInChat', async (messages) => {
+    //   await setchat(() => messages)
+    // })
 
     socket.emit('queryGetChatList')
     if (localStorage.getItem('userId')) {
@@ -48,7 +49,7 @@ function App() {
   }, [])
 
   const logout = () => {
-    setUser(null)
+    setUser(() => null)
   }
 
   const selectedChat = (chat) => {
@@ -88,25 +89,22 @@ function App() {
     <>
       {user ? (
         <div className={classes.App}>
-          <div className={classes.App__MainMenu}>
-            <MainMenu
-              deleteChat={deleteChat}
-              user={user}
-              selectChat={chat}
-              chatList={chatList}
-              selectedChat={selectedChat}
-              createChat={createChat}
-              logout={logout}
-            />
-          </div>
-          <div className={classes.App__Chat}>
-            <Chat
-              user={user}
-              chat={chat}
-              emitSendMessage={emitSendMessage}
-              selectedChat={selectedChat}
-            />
-          </div>
+          <MainMenu
+            deleteChat={deleteChat}
+            user={user}
+            selectChat={chat}
+            chatList={chatList}
+            selectedChat={selectedChat}
+            createChat={createChat}
+            logout={logout}
+          />
+
+          <ChatMessage
+            user={user}
+            chat={chat}
+            emitSendMessage={emitSendMessage}
+            selectedChat={selectedChat}
+          />
         </div>
       ) : (
         <PopupLayout>

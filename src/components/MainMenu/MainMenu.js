@@ -8,6 +8,7 @@ import CreateChat from './CreateChat/CreateChat'
 function MainMenu(props) {
   const [searchChat, setSearchChat] = React.useState('')
   const [formCreateChat, setFormCreateChat] = React.useState(false)
+
   const hideWindowCreateChat = () => {
     setFormCreateChat(false)
   }

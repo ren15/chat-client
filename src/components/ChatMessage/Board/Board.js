@@ -4,13 +4,9 @@ import Message from './Message/Message'
 import OtherMessage from './OtherMessage/OtherMessage'
 
 function Board(props) {
-  React.useEffect(() => {
-    // props.selectedChat(props.chat)
-  }, [props.chatList])
-
   return (
     <div className={classes.board}>
-      {props.chatList.map(
+      {props.chat.map(
         (el, index) =>
           (props.user.id === el.userId ? (
             <Message
