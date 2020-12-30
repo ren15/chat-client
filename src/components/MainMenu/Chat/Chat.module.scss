@@ -1,0 +1,50 @@
+.chat {
+  display: block;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  border-bottom: 2px solid #00aabb;
+  transition: background 0.3s ease-in;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &__delete {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(0, -50%);
+    background-color: red;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #ffffff;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(#00aabb, 0.7);
+    }
+  }
+  &__name {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    padding-bottom: 5px;
+    position: relative;
+    white-space: nowrap;
+  }
+  &__lastMessage {
+    font-size: 14px;
+    font-weight: 500;
+    color: #5c5c5c;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba($color: #00aabb, $alpha: 0.3);
+  }
+}
+
+.selected {
+  background-color: #00aabb;
+}

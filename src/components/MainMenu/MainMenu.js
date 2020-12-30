@@ -1,13 +1,14 @@
 import React from 'react'
 import PopupLayout from '../../hoc/PopupLayout/PopupLayout'
 import Loader from '../Loader/Loader'
-import RoomList from '../MainMenu/RoomList/RoomList'
+import ChatList from '../MainMenu/ChatList/ChatList'
 import classes from './MainMenu.module.scss'
 import CreateChat from './CreateChat/CreateChat'
 
 function MainMenu(props) {
   const [searchChat, setSearchChat] = React.useState('')
   const [formCreateChat, setFormCreateChat] = React.useState(false)
+
   const hideWindowCreateChat = () => {
     setFormCreateChat(false)
   }
@@ -24,11 +25,7 @@ function MainMenu(props) {
           className={classes.MainMenu__logout}
           onClick={() => props.logout()}></button>
       </div>
-      <input
-        className={classes.MainMenu__input}
-        value={searchChat}
-        onChange={changeSearchChat}
-      />
+
       <div className={classes.newChat}>
         <button
           className={classes.newChat__create}
@@ -36,21 +33,32 @@ function MainMenu(props) {
             setFormCreateChat(true)
           }}>
           Создать чат
-        </button>{' '}
+        </button>
+        <input
+          className={classes.newChat__input}
+          value={searchChat}
+          placeholder='Поиск...'
+          onChange={changeSearchChat}
+        />
         {formCreateChat ? (
           <PopupLayout>
             <CreateChat
+              user={props.user}
               createChat={props.createChat}
               hideWindowCreateChat={hideWindowCreateChat}
             />
           </PopupLayout>
         ) : null}
       </div>
-      {props.roomList.length ? (
-        <RoomList
+
+      {props.chatList.length ? (
+        <ChatList
+          user={props.user}
+          deleteChat={props.deleteChat}
+          selectChat={props.selectChat}
           searchChat={searchChat}
-          roomList={props.roomList}
-          selectedRoom={props.selectedRoom}
+          chatList={props.chatList}
+          selectedChat={props.selectedChat}
         />
       ) : (
         <Loader />
