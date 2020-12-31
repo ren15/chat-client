@@ -22,7 +22,7 @@ function Chat(props) {
       {props.chat.creator === props.user.id ? (
         <button
           className={classes.chat__delete}
-          onClick={() => props.deleteChat(props.chat)}>
+          onClick={(event) => props.deleteChat(event, props.chat)}>
           X
         </button>
       ) : null}

@@ -10,54 +10,67 @@ import PopupLayout from './hoc/PopupLayout/PopupLayout'
 const socket = io('http://localhost:5000/')
 
 function App() {
-  const [chatList, setchatList] = React.useState([])
-  const [chat, setchat] = React.useState([{messages: []}])
+  const [chatList, setChatList] = React.useState([])
+  const [chat, setChat] = React.useState([{messages: []}])
   const [user, setUser] = React.useState(null)
 
   React.useEffect(() => {
-    // Создание обработчиков событий
-    socket.on('getUser', async (user) => {
-      await setUser(() => user)
+    socket.on('getUser', (user) => {
+      setUser(() => user)
       if (user) {
         localStorage.setItem('userId', user.id)
       }
     })
 
-    socket.on('getChatList', async (chatList) => {
-      try {
-        await setchatList(() => chatList)
-      } catch (err) {
-        console.warn(err)
-      }
+    socket.on('getChatList', (chatList) => {
+      setChatList(() => chatList)
     })
-    socket.on('getMessagesInChat', async (messages) => {
-      try {
-        console.log(messages)
-        await setchat(() => messages)
-      } catch (err) {
-        console.warn(err)
-      }
+    socket.on('getMessagesInChat', (chat) => {
+      setChat(() => chat)
     })
-    // socket.on('sendMessagesInChat', async (messages) => {
-    //   await setchat(() => messages)
-    // })
-
     socket.emit('queryGetChatList')
     if (localStorage.getItem('userId')) {
       socket.emit('queryGetUserById', localStorage.getItem('userId'))
     }
+
+    return () => {
+      socket.off('getUser')
+      socket.off('getChatList')
+      socket.off('getMessagesInChat')
+    }
   }, [])
 
-  const logout = () => {
-    setUser(() => null)
-  }
+  React.useEffect(() => {
+    setTimeout(() => {
+      setChat(() => {
+        return chatList.reduce((acc, val) => {
+          if (val._id === chat._id) {
+            return (acc = val)
+          }
+          return acc
+        }, {})
+      })
+    }, 500)
+  }, [chatList])
 
   const selectedChat = (chat) => {
-    socket.emit('queryGetMessagesInChat', chat._id)
+    socket.emit('queryGetChatList')
+    setChat(() => {
+      return chatList.reduce((acc, val) => {
+        if (val._id === chat._id) {
+          return (acc = val)
+        }
+        return acc
+      }, {})
+    })
   }
 
-  const deleteChat = (chat) => {
-    socket.emit('queryDeleteChat', chat._id, user.id)
+  const deleteChat = (event, thisChat) => {
+    event.stopPropagation()
+    socket.emit('queryDeleteChat', thisChat._id, user.id)
+    if (thisChat._id === chat._id) {
+      setChat(() => [{messages: []}])
+    }
   }
 
   const createChat = (newChat) => {
@@ -70,7 +83,7 @@ function App() {
     socket.emit('queryGetChatList')
   }
 
-  const emitSendMessage = (text, userId, userName, date) => {
+  const sendMessage = (text, userId, userName, date) => {
     const newMessage = {text, userId, userName, date}
     socket.emit('querySendMessagesInChat', chat._id, newMessage)
   }
@@ -83,6 +96,10 @@ function App() {
   const auth = (name, password) => {
     const user = {name, password}
     socket.emit('queryGetUser', user)
+  }
+
+  const logout = () => {
+    setUser(() => null)
   }
 
   return (
@@ -102,7 +119,7 @@ function App() {
           <ChatMessage
             user={user}
             chat={chat}
-            emitSendMessage={emitSendMessage}
+            sendMessage={sendMessage}
             selectedChat={selectedChat}
           />
         </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import CryptoJS from 'crypto-js'
 import classes from './Auth.module.scss'
 
 function Auth(props) {
@@ -31,10 +32,11 @@ function Auth(props) {
       <div className={classes.Auth__form}>
         <p>Пароль:</p>
         <input
-          type='text'
+          type='password'
           name='password'
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={(event) =>
+            setPassword(CryptoJS.MD5(event.target.value).toString())
+          }
         />
       </div>
       <div className={classes.Auth__buttons}>
@@ -57,5 +59,4 @@ function Auth(props) {
     </div>
   )
 }
-
 export default Auth

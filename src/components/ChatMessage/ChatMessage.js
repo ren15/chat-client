@@ -2,30 +2,24 @@ import React from 'react'
 import classes from './ChatMessage.module.scss'
 import Board from './Board/Board'
 
-function Chat(props) {
+function ChatMessage(props) {
   const [text, setText] = React.useState('')
-  const [chat, setChat] = React.useState(props.chat)
-
-  React.useEffect(() => {
-    console.log('render')
-    setChat(() => props.chat)
-  }, [props.chat])
 
   const changeText = (event) => {
     setText(event.target.value)
   }
 
   const sendMessage = () => {
-    if (text && chat) {
+    if (text) {
       const now = new Date()
-      props.emitSendMessage(text, props.user.id, props.user.name, now)
+      props.sendMessage(text, props.user.id, props.user.name, now)
+      props.selectedChat(props.chat)
       setText('')
-      props.selectedChat(chat)
     }
   }
 
   const sendMessageKeyEnter = (event) => {
-    if (text && event.key === 'Enter' && chat) {
+    if (text && event.key === 'Enter' && props.chat) {
       sendMessage()
       event.preventDefault()
     }
@@ -35,15 +29,11 @@ function Chat(props) {
     <div className={classes.chat}>
       <div className={classes.chat__header}>
         <div className={classes.chat__chatName}>
-          <p>{chat.name || null}</p>
+          <p>{props.chat.name || null}</p>
         </div>
       </div>
-      {chat ? (
-        <Board
-          user={props.user}
-          selectedChat={props.selectedChat}
-          chat={chat.messages || []}
-        />
+      {props.chat ? (
+        <Board user={props.user} messages={props.chat.messages || []} />
       ) : null}
 
       <div className={classes.chat__sendMessage}>
@@ -63,4 +53,4 @@ function Chat(props) {
   )
 }
 
-export default Chat
+export default ChatMessage

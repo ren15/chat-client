@@ -38,3 +38,10 @@
     transform: rotate(360deg);
   }
 }
+
+h2 {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #00aabb;
+}

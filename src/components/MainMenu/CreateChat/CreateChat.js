@@ -3,6 +3,7 @@ import classes from './CreateChat.module.scss'
 
 function CreateChat(props) {
   const [newChat, setNewChat] = React.useState('')
+
   const createChatAndHideWindow = (chat) => {
     props.createChat(chat)
     props.hideWindowCreateChat()
