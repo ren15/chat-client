@@ -7,12 +7,9 @@ import MainMenu from './components/MainMenu/MainMenu'
 import Auth from './components/Auth/Auth'
 import PopupLayout from './hoc/PopupLayout/PopupLayout'
 
-const socket = io('https://evening-shelf-49003.herokuapp.com/', {
-  withCredentials: true,
-  extraHeaders: {
-    'Access-Control-Allow-Origin': 'GET,POST'
-  }
-})
+const socket = io(
+  'https://evening-shelf-49003.herokuapp.com/socket.io/?EIO=4&transport=websocket'
+)
 
 function App() {
   const [chatList, setChatList] = React.useState([])
