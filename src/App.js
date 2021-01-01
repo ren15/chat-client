@@ -10,7 +10,7 @@ import PopupLayout from './hoc/PopupLayout/PopupLayout'
 const socket = io('https://evening-shelf-49003.herokuapp.com/', {
   withCredentials: true,
   extraHeaders: {
-    'my-custom-header': 'abcd'
+    'Access-Control-Allow-Origin': 'GET,POST'
   }
 })
 
