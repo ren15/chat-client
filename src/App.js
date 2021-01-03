@@ -69,7 +69,9 @@ function App() {
     event.stopPropagation()
     socket.emit('queryDeleteChat', thisChat._id, user.id)
     if (thisChat._id === chat._id) {
-      setChat(() => [{messages: []}])
+      setTimeout(() => {
+        setChat(() => [{messages: []}])
+      }, 0)
     }
   }
 
